@@ -9,32 +9,48 @@ and open the template in the editor.
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/bootstrap.css" rel="stylesheet">
         <script src="../source/js/jquery.js"></script>
-        <script src="../source/js/jquery.fastform.min.js"></script>
+        <script src="../source/js/jquery.fastform.js"></script>
         <script>
             $(document).ready(function() {
                 $('#testformsend').bind('click', function () {
-                    var data = $('#testform').fastform();
+                    //var data = $('#testform').fastform();
+                    
+                    /*
+                     * send the form directly to the backenc
+                     */
+                    $('#testform').fastform({
+                        ajax:true,
+                        jqueryAjax: {
+                            done: function () {
+                                alert('done');
+                            },
+                            success: function(data) {
+                                console.log(data);
+                                alert('Load was performed.');
+                            }
+                        }
+                    });
                     //if data is false, there are some errors in the form
-                    if(data === false) {
+                    /* if(data === false) {
                         //do some stuff...
                         console.log("false");
                         return false;
                     } else {
-                        /**
-                         * here you can send the data to your server and check the data on the server again
-                         */
+                        
                         $('#formdata').html("1");
                         for(var prop in data) {
                             $('#formdata').append("<pre>" + prop + ":" + data[prop] + "</pre>");
                         }
-                    }
+                            }
+
+                     */
                 });
             });
         </script>
     </head>
     <body>
         <div class="row3 well">
-            <form class="form-horizontal" id="testform">
+            <form class="form-horizontal" id="testform" action="php/test.php">
                 <div class="control-group">
                     <label class="control-label" for="email">Email</label>
                     <div class="controls">  
@@ -53,8 +69,8 @@ and open the template in the editor.
                     <div class="controls">
                         <select id="town">
                             <option>Stuttgart</option>
-                             <option>Hamburg</option>
-                             <option>Berlin</option>
+                            <option>Hamburg</option>
+                            <option>Berlin</option>
                         </select>
                     </div>
                 </div>

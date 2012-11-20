@@ -1,6 +1,6 @@
 /**
  * jquery fastform plugin
- * version: 0.0.1
+ * version: 0.0.2
  * author:kayoliver82@gmail.com
  * documentation/sourcecode:https://github.com/KaySchneider/fastform
  */
@@ -38,19 +38,22 @@
                  * with the attributes from this html node
                  */
                 if(element != null) {
-                   
+                    
                     if(typeof id =="undefined" ) {
                         id = $(this).attr('name');
                     }
-                    pushMe[id] = element;
+                    pushMe[id] = element ;
                     $.extend(that.returnArray,pushMe);
                 }
             
             });
-            return that.returnArray;
+            if(saveVars.options.ajax === true) {
+                methods.sendForm.apply(this, [that.returnArray,saveVars]);
+            } else 
+                return that.returnArray;
         },
         
-        returnArray : new Array(),
+        returnArray : new Object(),
         
         getInputField : function (inputField) {
             var type = $(inputField).attr('type');
@@ -143,17 +146,45 @@
             }
     
             methods.checkFormForError();
+        },
+        
+        sendForm : function (data,saveVars) {
+            var url = $(this).attr('action');
+            /**
+             * the default settings, can be overridden with the options
+             */
+            var actions = {
+                url: url,
+                data: data,
+                method : 'POST'
+                };
+            var ajaxCall = jQuery.extend({},actions, saveVars.options.jqueryAjax);
+            $.ajax(ajaxCall);
         }
     };
     
-    $.fn.fastform = function () {
+    $.fn.fastform = function (options) {
         //reset the values!
-        methods.returnArray = new Array();
+        methods.returnArray = new Object();
+        var opts = jQuery.extend({}, $.fn.fastform.defaults, options);
         saveVars =  {
-            inputElements : $(':input', this)
-        }
+            inputElements : $(':input', this),
+            options : opts
+        };
+        
         return methods.getFormDataArray.apply(this, [saveVars]);
     };
+    
+    $.fn.fastform.defaults = {
+        method : 'POST',
+        ajax : false,
+        //all methods wich can be insert into an jquery ajax call can be insert here
+        jqueryAjax : {
+            success: function(data) {
+                alert('Load was performed.');
+            }
+        }
+    }
     
     
 })(jQuery);
