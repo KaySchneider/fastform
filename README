@@ -1,0 +1,54 @@
+fastform jquery plugin
+
+Version 0.0.1
+
+author: kayoliver82@gmail.com
+
+date: 2012.11.20
+
+
+fastform ist ein kleines jquery plugin welches die Daten aus einem 
+Formular für die Übertragung mittels Ajax als Object mit key(id|name) value 
+Paare liefert.
+
+Es überprüft auch direkt ob alle Felder mit "required" ausgefüllt sind und 
+Prüft ob Felder mit dem typ email auch eine Email Adresse enthalten.
+
+Sollte in einem Feld ein Fehler festgestellt werden so wird eine Fehlerklasse
+dem Input Feld angehängt und es gibt false zurück.
+
+fastform soll helfen schnell Formular Daten auszulesen und diese daten irgendwo
+hin verenden. Es ist quasi ein AjaxFormDevelopmentBooster.
+
+
+Ein blick in das Demo Formular zeigt direkt wie es Funkitoniert.
+
+
+Features:
+    schnelle Implementation
+    einfache handhabung
+    prüfen von email Adressen
+    checkboxen
+    radio boxen
+    input
+    select
+
+Beispiel eines Aufrufres:
+....
+                    var data = $('#testform').fastform();
+                    //if data is false, there are some errors in the form
+                    if(data === false) {
+                        //do some stuff...
+                        return false;
+                    } else {
+                        /**
+                         * in data there are all the form data as key value pairs
+                         * here you can send the data to your server and check the data on the server again
+                         */
+                        $('#formdata').html("1");
+                        for(var prop in data) {
+                            $('#formdata').append("<pre>" + prop + ":" + data[prop] + "</pre>");
+                        }
+                    }
+    
+    
