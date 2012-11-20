@@ -1,3 +1,9 @@
+/**
+ * jquery fastform plugin
+ * version: 0.0.1
+ * author:kayoliver82@gmail.com
+ * documentation/sourcecode:https://github.com/KaySchneider/fastform
+ */
 (function( $ ){ 
     
     /**
