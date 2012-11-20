@@ -1,0 +1,234 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>fastform &middot; jquery plugin</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="fastform, jquery plugin for form validation and data getter. ">
+        <meta name="author" content="kay schneider">
+
+        <!-- Le styles -->
+        <link href="example/css/bootstrap.css" rel="stylesheet">
+        <style type="text/css">
+            body {
+                padding-top: 20px;
+                padding-bottom: 40px;
+            }
+
+            /* Custom container */
+            .container-narrow {
+                margin: 0 auto;
+                max-width: 700px;
+            }
+            .container-narrow > hr {
+                margin: 30px 0;
+            }
+
+            /* Main marketing message and sign up button */
+            .jumbotron {
+                margin: 60px 0;
+                text-align: center;
+            }
+            .jumbotron h1 {
+                font-size: 72px;
+                line-height: 1;
+            }
+            .jumbotron .btn {
+                font-size: 21px;
+                padding: 14px 24px;
+            }
+
+            /* Supporting marketing content */
+            .marketing {
+                margin: 60px 0;
+            }
+            .marketing p + h4 {
+                margin-top: 28px;
+            }
+        </style>
+        <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
+
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <!-- Fav and touch icons -->
+        <link rel="shortcut icon" href="../assets/ico/favicon.ico">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+    </head>
+
+    <body>
+
+        <div class="container-narrow">
+
+            <div class="masthead">
+                <ul class="nav nav-pills pull-right">
+                    <li><a href="#demo">Working Demo</a></li>
+                    <li class=""><a href="https://github.com/KaySchneider">Visit the author on github</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <h3 class="muted">fastform</h3>
+            </div>
+
+            <hr>
+
+            <div class="jumbotron">
+                <h1>fastform for jquery! Boost your ajax forms</h1>
+                <p class="lead">Einfach und schnell ajax Formulare Erstellen! Und die Daten direkt aus dem Formular herausschütteln und validieren mit nur einer Zeile code: <br/> var data = $('#formId').fastform()</p>
+                <a class="btn btn-large btn-success" href="https://github.com/KaySchneider/fastform/zipball/master">download zip</a>
+                <a class="btn btn-large btn-success" href="https://github.com/KaySchneider/fastform/tarball/master">download tar</a>
+            </div>
+
+            <hr>
+
+            <div class="row-fluid marketing">
+                <div class="span6">
+                    <h4>Fast development</h4>
+                    <p>Anpassungen im Formular, Anzahl der Felder, neue Namen, können schnell realisiert werden da es im javascript nichts mehr anzupassen ist. Die daten werden Automatisch aus dem Formular aggregiert und können direkt als JSON an den Server gesendet werden.</p>
+
+                    <h4>Automatische email Validierung</h4>
+                    <p>Sobald ein Input Feld den typ email aufweißt wird es automatisch nach einer gültigen email Adresse geparsed</p>
+
+
+                </div>
+
+                <div class="span6">
+                    <h4>Geht auch mit Bootstrap</h4>
+                    <p>Fastform wurde nach dem html Markup von Bootstrap Formularen optimiert. So kann man direkt Bootstrap einbinden und erhält direkt ein schönes Formular. Muss man aber nicht. Geht auch ohne Bootstrap.</p>
+
+                    <h4 id="contact">Kontakt</h4>
+                    <p>Den Author kann man hier überall Kontaktieren:
+
+                    </p>
+                    <ul>
+                        <li>
+                            <a href="https://twitter.com/ikayschneider">twitter</a>
+                        </li>
+                        <li>
+                            <a href="https://facebook.com/ikayschneider">facebook</a>
+                        </li>
+                        <li>
+                            kayoliver82 [ @ ] gmail.com
+                        </li>
+                    </ul>
+
+
+                </div>
+            </div>
+            <div class="row" id="demo">
+
+                <h2>Demo </h2>
+
+
+                <div class="row3 well">
+                    <form class="form-horizontal" id="testform">
+                        <div class="control-group">
+                            <label class="control-label" for="email">Email</label>
+                            <div class="controls">  
+                                <input type="email" id="email" required="required" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="name">Name</label>
+                            <div class="controls">
+                                <input type="text" id="name" required="required" placeholder="Nachname">
+                            </div>
+
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="town">town</label>
+                            <div class="controls">
+                                <select id="town">
+                                    <option>Stuttgart</option>
+                                    <option>Hamburg</option>
+                                    <option>Berlin</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="newsletter">Newsletter ?</label>
+                            <div class="controls">
+                                Yes <input type="checkbox" id="newsletter" />
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="gender">Gender </label>
+                            <div class="controls" >
+                                <p>Male <input type="radio" name="gender" value="male"/></p>
+                                <p>Female <input type="radio" name="gender" value="female"/></p>
+                            </div>
+                        </div>
+                        <div class="btn-group">
+                            <div class="btn inverse" id="testformsend">
+                                send 
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="row3 well" >
+                    <h3>Form Data / result:</h3>
+                    <div id="formdata">
+
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <hr>
+
+            <div class="footer">
+                <p>&copy; Kay Schneider 2012</p>
+            </div>
+
+        </div> <!-- /container -->
+
+        <!-- Le javascript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="source/js/jquery.js"></script>
+        <script src="source/js/jquery.fastform.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#testformsend').bind('click', function () {
+                    var data = $('#testform').fastform();
+                    //if data is false, there are some errors in the form
+                    if(data === false) {
+                        //do some stuff...
+                        console.log("false");
+                        return false;
+                    } else {
+                        /**
+                         * here you can send the data to your server and check the data on the server again
+                         */
+                        $('#formdata').html("");
+                        for(var prop in data) {
+                            $('#formdata').append("<pre>" + prop + ":" + data[prop] + "</pre>");
+                        }
+                    }
+                });
+            });
+        </script>
+
+
+
+
+
+        <script type="text/javascript">
+
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-33116077-5']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+
+        </script>
+    </body>
+</html>
