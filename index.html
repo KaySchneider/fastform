@@ -80,7 +80,7 @@
 
             <div class="jumbotron">
                 <h1>fastform for jquery! Boost your ajax forms</h1>
-                <p class="lead">Einfach und schnell ajax Formulare Erstellen! Und die Daten direkt aus dem Formular herausschütteln und validieren mit nur einer Zeile code: <br/> var data = $('#formId').fastform()</p>
+                <p class="lead">Einfach und schnell ajax Formulare Erstellen! Und die Daten direkt aus dem Formular herausschütteln und validieren mit nur einer Zeile code: <br/> var data = $('#formId').fastform() <br/> new neu <br/>direkt an den Server senden<br/> $('#formId').fastform({ajax:true})</p>
                 <a class="btn btn-large btn-success" href="https://github.com/KaySchneider/fastform/zipball/master">download zip</a>
                 <a class="btn btn-large btn-success" href="https://github.com/KaySchneider/fastform/tarball/master">download tar</a>
                 <p>you love this ?</p>
@@ -105,6 +105,9 @@
                     <h4>Automatische email Validierung</h4>
                     <p>Sobald ein Input Feld den typ email aufweißt wird es automatisch nach einer gültigen email Adresse geparsed</p>
 
+                        <h4>Modus Datenrückgabe:</h4>
+                        <p>Wird das Plugin<b> ohne Optionen</b> aufgerufen gibt es im fehlerfall <b>false</b> zurück und im Erfolgsfall ein <b>Objekt</b> mit allen Daten welche im Formular enthalten waren um diese weiter zu verarbeiten</p>
+
 
                 </div>
 
@@ -128,6 +131,8 @@
                         </li>
                     </ul>
 
+                    <h4>Modus Ajax Versenden:</h4>
+                    <p>Wird das Plugin mit <b>der Option ajax:true</b> aufgerufen, gibt das Plugin nichts mehr zurück. Weder im Fehler noch im Erfolgsfall. Stattdessen wird im Erfolgsfall der Validierung das Formular direkt an das Ziel im action Attribute der Form Eigenschaft versendet. <a href="#ajaxsendauto">mehr dazu</a></p>
 
                 </div>
             </div>
@@ -187,6 +192,23 @@
 
                     </div>
                 </div>
+            </div>
+            <div class="row" >
+                <h2>Optionen:</h2>
+                <p id="ajaxsendauto"><b>Direkt mit $.ajax versenden lassen!</b></p>
+                <p>Damit der Aufruf wie unten funktioniert einfach im <b>form tag</b> unter <b>action="bla/foo"</b> angeben dann wird das Formular an "bla/foo" versendet. Im Aufruf 
+                selbst kann man unter dem Punkt iqueryAjax alle eigenschaftem von <b>$.(ajax)</b> ändern. Theoretisch und Praktisch auch die <b>url</b></p>
+                <textarea class="field span9" id="textarea" rows="12" placeholder="">
+$('#testform').fastform({
+                        ajax:true,
+                        jqueryAjax: {
+                            success: function(data) {
+                                console.log(data);
+                                alert('Load was performed.');
+                            }
+                        }
+                    });
+                </textarea>
             </div>
             <div class="clear"></div>
             <hr>
