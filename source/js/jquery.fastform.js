@@ -156,7 +156,7 @@
             var actions = {
                 url: url,
                 data: data,
-                method : 'POST'
+                type : 'POST'
                 };
             var ajaxCall = jQuery.extend({},actions, saveVars.options.jqueryAjax);
             $.ajax(ajaxCall);
